@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/bottom_nav_dashboard">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.szakdolgozat.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+
+    <fragment
+        android:id="@+id/bottom_nav_dashboard"
+        android:name="com.example.szakdolgozat.ui.dashboard.DashboardFragment"
+        android:label="DashboardFragment"
+        tools:layout="@layout/dashboard_fragment" />
+
+    <fragment
+        android:id="@+id/bottom_nav_payment_options"
+        android:name="com.example.szakdolgozat.ui.paymentoptions.PaymentOptionsFragment"
+        android:label="PaymentOptionsFragment"
+        tools:layout="@layout/payment_options_fragment" />
+
+    <fragment
+        android:id="@+id/bottom_nav_settings"
+        android:name="com.example.szakdolgozat.ui.settings.SettingsContainerFragment"
+        android:label="fragment_settings_container"
+        tools:layout="@layout/fragment_settings_container" />
+
+    <fragment
+        android:id="@+id/bottom_nav_cart"
+        android:name="com.example.szakdolgozat.ui.cart.CartFragment"
+        android:label="CartFragment" />
+
+</navigation>

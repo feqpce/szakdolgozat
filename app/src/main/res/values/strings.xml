@@ -1,3 +1,45 @@
 <resources>
     <string name="app_name">Szakdolgozat</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_register">Register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="dashboard_label">Dashboard</string>
+    <string name="payment_options">Cards</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="settings_bottom_nav_title">Settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cart_label">Cart</string>
+    <string name="action_settings">Settings</string>
+    <string name="product_price">%1$d Ft</string>
+    <string name="amount_label">Amount:</string>
+    <string name="checkout_button_text">Checkout</string>
+    <string name="cart_total">Total: %1$d Ft</string>
+    <string name="expiration_date">%1$d/%2$d</string>
+    <string name="card_number">Card number</string>
+    <string name="month_hint">MM</string>
+    <string name="year_hint">YYYY</string>
+    <string name="cvc_hint">CVC</string>
+    <string name="save_card_btn_text">SAVE</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="payment_method_fab_content_description">Add new payment method.</string>
 </resources>

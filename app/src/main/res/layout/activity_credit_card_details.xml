@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.paymentoptions.CreditCardDetailsActivity">
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/card_number_text_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/card_number"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/exp_month_text_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/month_hint"
+        android:inputType="number"
+        android:maxLength="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_number_text_input" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/exp_year_text_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:hint="@string/year_hint"
+        android:inputType="number"
+        android:maxLength="4"
+        app:layout_constraintStart_toEndOf="@id/exp_month_text_input"
+        app:layout_constraintTop_toBottomOf="@id/card_number_text_input" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/cvc_text_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:hint="@string/cvc_hint"
+        android:inputType="number"
+        android:maxLength="3"
+        app:layout_constraintStart_toEndOf="@id/exp_year_text_input"
+        app:layout_constraintTop_toBottomOf="@id/card_number_text_input" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_save_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/save_card_btn_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/exp_month_text_input" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
