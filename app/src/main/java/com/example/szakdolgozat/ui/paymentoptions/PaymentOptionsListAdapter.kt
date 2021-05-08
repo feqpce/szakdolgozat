@@ -39,7 +39,7 @@ class PaymentOptionsListAdapter(val longClickListener: IItemLongClickListener<Pa
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PaymentMethodViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = CreditCardPreviewBinding.inflate(inflater)
+        val binding = CreditCardPreviewBinding.inflate(inflater, parent, false)
         return PaymentMethodViewHolder(binding)
     }
 
@@ -49,7 +49,7 @@ class PaymentOptionsListAdapter(val longClickListener: IItemLongClickListener<Pa
         selectedPaymentMethodID.observeForever { id ->
             holder.itemView.setBackgroundColor(
                 if (item.id == id) {
-                    Color.MAGENTA
+                    Color.argb(64, 0, 255, 255)
                 } else {
                     Color.TRANSPARENT
                 }

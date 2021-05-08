@@ -34,4 +34,9 @@
         android:name="com.example.szakdolgozat.ui.cart.CartFragment"
         android:label="CartFragment" />
 
+    <fragment
+        android:id="@+id/bottom_nav_receipts"
+        android:name="com.example.szakdolgozat.ui.receipts.ReceiptsFragment"
+        android:label="ReceiptsFragment" />
+
 </navigation>

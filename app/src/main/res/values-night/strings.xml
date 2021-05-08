@@ -17,4 +17,6 @@
     <string name="save_card_btn_text">SAVE</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="payment_method_fab_content_description">Add new payment method.</string>
+    <string name="receipts_menu_label">Receipts</string>
+    <string name="welcome_text">Welcome back, %s!</string>
 </resources>

@@ -12,6 +12,11 @@
         android:title="@string/cart_label" />
 
     <item
+        android:id="@+id/bottom_nav_receipts"
+        android:icon="@drawable/ic_baseline_receipt_long_24"
+        android:title="@string/receipts_menu_label" />
+
+    <item
         android:id="@+id/bottom_nav_payment_options"
         android:icon="@drawable/payment_options_navigation"
         android:title="@string/payment_options" />

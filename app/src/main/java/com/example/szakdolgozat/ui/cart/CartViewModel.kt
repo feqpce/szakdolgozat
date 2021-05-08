@@ -37,6 +37,8 @@ class CartViewModel : ViewModel() {
             it != null && it > 0
         }
 
+    val toastMessage = MutableLiveData<String>()
+
     fun addProductToCart(productId: String) {
         paymentRepository.addProductToCart(productId)
     }
@@ -49,10 +51,11 @@ class CartViewModel : ViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 try {
-                    val result = paymentRepository.checkout(total.value!!).await()
-                    Log.d(TAG, result.data.toString())
+                    paymentRepository.checkout(total.value!!).await()
+                    toastMessage.postValue("Successful checkout")
                 } catch (e: Exception) {
                     Log.e(TAG, e.message.toString())
+                    toastMessage.postValue(e.message)
                 }
             }
         }

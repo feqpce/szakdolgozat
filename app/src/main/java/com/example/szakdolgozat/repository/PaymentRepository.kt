@@ -12,6 +12,8 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.*
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.HttpsCallableResult
+import java.text.SimpleDateFormat
+import java.util.*
 
 class PaymentRepository {
     private val scannedProductIDs = mutableListOf<String>()
@@ -101,18 +103,20 @@ class PaymentRepository {
         scannedProductIDs.add(productId)
 
         functions.getHttpsCallable("addProductToCart").call(productId).addOnSuccessListener {
-            val fields = it.data as HashMap<*, *>
+            it.data?.let {
+                val fields = it as HashMap<*, *>
 
-            productsInCart.add(
-                Product(
-                    productId,
-                    fields["product_name"] as String,
-                    fields["price"] as Int,
-                    MutableLiveData(1)
+                productsInCart.add(
+                    Product(
+                        productId,
+                        fields["product_name"] as String,
+                        fields["price"] as Int,
+                        MutableLiveData(1)
+                    )
                 )
-            )
 
-            _cart.value = productsInCart
+                _cart.value = productsInCart
+            }
         }
     }
 
@@ -123,26 +127,41 @@ class PaymentRepository {
     }
 
     fun checkout(total: Int): Task<HttpsCallableResult> {
-        val productHashes = mutableListOf<HashMap<String, Any>>()
+        val productHashes = mutableListOf<HashMap<String, Any?>>()
         for (product in productsInCart) {
             productHashes.add(
                 hashMapOf(
                     "id" to product.id,
+                    "product_name" to product.productName,
+                    "price" to product.price,
                     "amount" to product.numberInCart.value!!
                 )
             )
         }
+        clearCart()
+
         return functions.getHttpsCallable("checkout").call(
             hashMapOf(
                 "items" to productHashes,
-                "total" to total
+                "total" to total,
+                "date" to SimpleDateFormat("yyyy.MM.dd").format(Date())
             )
         )
+    }
+
+    private fun clearCart() {
+        scannedProductIDs.clear()
+        productsInCart.clear()
+        _cart.postValue(mutableListOf())
     }
 
     fun setDefaultPaymentMethod(method: PaymentMethod): Task<Void> {
         return fireStore.document("stripe_customers/${auth.user.value!!.uid}")
             .update("default_payment_method", method.id)
+    }
+
+    fun getReceipts(): CollectionReference {
+        return fireStore.collection("stripe_customers/${auth.user.value!!.uid}/payments")
     }
 
     companion object {

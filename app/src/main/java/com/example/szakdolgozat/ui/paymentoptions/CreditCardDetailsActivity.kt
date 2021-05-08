@@ -15,6 +15,7 @@ class CreditCardDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_credit_card_details)
+        supportActionBar?.title = "Add credit card"
 
         val saveButton = findViewById<AppCompatButton>(R.id.button_save_card)
 

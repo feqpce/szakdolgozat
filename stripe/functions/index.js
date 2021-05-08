@@ -87,7 +87,7 @@ exports.addPaymentMethodDetails = functions.firestore
 exports.createStripePayment = functions.firestore
   .document('stripe_customers/{userId}/payments/{pushId}')
   .onCreate(async (snap, context) => {
-    const { amount, currency, payment_method } = snap.data();
+    const { amount, currency, payment_method, receipt } = snap.data();
     try {
       // Look up the Stripe customer id.
       const customer = (await snap.ref.parent.parent.get()).data().customer_id;
@@ -106,6 +106,7 @@ exports.createStripePayment = functions.firestore
         },
         { idempotencyKey }
       );
+      payment.receipt = receipt;
       // If the result is successful, write it back to the database.
       await snap.ref.set(payment);
     } catch (error) {
@@ -188,8 +189,6 @@ exports.createPaymentMethod = functions.https.onCall(async (data, context) => {
     .doc(uid)
     .collection('payment_methods')
     .add({ id: paymentMethod.id });
-    
-    await setDefaultPaymentMethod(uid, paymentMethod.id);
 });
 
 exports.addProductToCart = functions.https.onCall(async (data, context) => {
@@ -205,13 +204,17 @@ exports.checkout = functions.https.onCall(async (data, context) => {
 		.collection('stripe_customers')
 		.doc(uid).get()).data().default_payment_method;
 	if (!method) {
-		return new Exception("Missing default payment method.");
+		throw new functions.https.HttpsError("failed-precondition", "Missing default payment method.");
 	}
     const checkout_data = {
       payment_method: method,
       currency: 'huf',
       amount: formatAmountForStripe(data.total, 'huf'),
-      status: 'new'
+      status: 'new',
+      receipt: {
+      	date: data.date,
+      	items: data.items
+      }
     };
 
     await admin

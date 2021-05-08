@@ -8,6 +8,7 @@ import android.util.Size
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -79,9 +80,9 @@ class CartFragment : Fragment() {
             listAdapter.submitList(it)
             listAdapter.notifyDataSetChanged()
         }
-        /*viewModel.total.observe(viewLifecycleOwner) {
-            binding.cartTotal.text = getString(R.string.cart_total, it)
-        }*/
+        viewModel.toastMessage.observe(viewLifecycleOwner) {
+            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+        }
 
         return binding.root
     }
