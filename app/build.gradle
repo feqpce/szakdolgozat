@@ -99,4 +99,6 @@ dependencies {
 
     // Use this dependency to bundle the model with your app
     implementation 'com.google.mlkit:barcode-scanning:16.1.1'
+
+    implementation 'androidx.biometric:biometric-ktx:1.2.0-alpha03'
 }
